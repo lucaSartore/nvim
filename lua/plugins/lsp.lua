@@ -94,8 +94,7 @@ return {
 				lua_ls = {},
 				rust_analyzer = {},
 				omnisharp = {},
-				tsserver = {},
-                -- ts_ls = {},
+                ts_ls = {},
                 gopls = {},
 				pyright = {
 					settings = {
@@ -129,11 +128,6 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-                        -- small workaround as tsserver is no longer supported
-                        if server_name == "tsserver" then
-                            server_name = "ts_ls"
-                        end
-
 						local server = language_servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
