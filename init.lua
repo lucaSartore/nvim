@@ -7,6 +7,7 @@
 -- copilot
 -- list of diagnostics
 -- ctrl + tab for recent buffers
+-- open folder / open recent folder
 
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
@@ -16,6 +17,7 @@
 -- eye tracker
 
 
+local time = os.clock()
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -114,43 +116,4 @@ vim.opt.whichwrap = "b,s,h,l"
 
 require("config.lazy")
 
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
-local pickers = require('telescope.pickers')
-local finders = require('telescope.finders')
-local sorters = require('telescope.sorters')
-
-local function multi_select_example()
-  local selected_items = {}
-
-  pickers.new({}, {
-    prompt_title = "Select Items",
-    finder = finders.new_table({
-      results = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" },
-    }),
-    sorter = sorters.get_generic_fuzzy_sorter(),
-    attach_mappings = function(prompt_bufnr, map)
-      local function multi_select()
-        local current_picker = action_state.get_current_picker(prompt_bufnr)
-        local multi_selection = current_picker:get_multi_selection()
-
-        for _, entry in ipairs(multi_selection) do
-          table.insert(selected_items, entry.value)
-        end
-
-        -- Print the selected items in the command line
-        print("Selected items: " .. table.concat(selected_items, ", "))
-
-        actions.close(prompt_bufnr)
-      end
-
-      map('i', '<CR>', multi_select)
-      map('n', '<CR>', multi_select)
-
-      return true
-    end,
-  }):find()
-end
-
--- You can bind this function to a keymap:
-vim.api.nvim_set_keymap('n', '<leader>ms', '', { noremap = true, silent = true, callback=multi_select_example })
+-- vim.print(string.format("elapsed time: %.2f\n", os.clock() - time))

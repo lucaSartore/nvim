@@ -121,6 +121,7 @@ return {
                 "gofumpt", -- golang formatter
                 "go-debug-adapter",
                 "codelldb", -- rust (and all llvm stuff) debugger
+                "chrome-debug-adapter" -- chrome debugger
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

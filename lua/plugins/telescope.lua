@@ -85,5 +85,9 @@ return {
 		vim.keymap.set("n", "<leader>sn", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "[S]earch [N]eovim files" })
+
+		vim.keymap.set("n", "<leader>sp", function()
+			builtin.find_files({ cwd = "C:\\PROROB" })
+		end, { desc = "[S]earch [P]ROROB folder" })
 	end,
 }

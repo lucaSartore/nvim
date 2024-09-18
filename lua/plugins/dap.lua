@@ -444,6 +444,32 @@ return {
           },
         }
 
+        --------------------- CHROME ----------------------------
+		local chrome_debugger_path = mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebugAdapter.js"
+		-- dap.adapters.chrome = {
+		-- 	type = "executable",
+		--           command = chrome_debugger_path
+		-- }
+
+        dap.adapters.chrome = {
+            type = "executable",
+            command = "node",
+            args = {chrome_debugger_path}
+        }
+
+        dap.configurations.javascript = { -- change this to javascript if needed
+            {
+                name = "Attach to chrome",
+                type = "chrome",
+                request = "attach",
+                program = "${file}",
+                cwd = vim.fn.getcwd(),
+                sourceMaps = true,
+                protocol = "inspector",
+                port = 9222,
+                webRoot = "${workspaceFolder}"
+            }
+        }
 		------------------ OPEN LAUNCH.JSON CONFIGURATIONS ---------------------------
 
 		local vscode = require("dap.ext.vscode")
@@ -510,7 +536,22 @@ return {
 			"",
 			{ desc = "[D]ebug Toggle Bottom UI", callback = toggleBottomDapUi }
 		)
-		vim.api.nvim_set_keymap("n", "<leader>de", "", { desc = "[D]ebug [E]valuate", callback = dapui.eval })
-		vim.api.nvim_set_keymap("v", "<leader>de", "", { desc = "[D]ebug [E]valuate", callback = dapui.eval })
+        vim.api.nvim_set_hl(0, "blue",   { fg = "#56b6c2" })
+        vim.api.nvim_set_hl(0, "green",  { fg = "#98c379" })
+        vim.api.nvim_set_hl(0, "red", { fg = "#ca1143" })
+        vim.api.nvim_set_hl(0, "gray", { fg = "#cccccc" })
+
+        vim.fn.sign_define('DapBreakpoint',          { text='', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
+        vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
+        vim.fn.sign_define('DapBreakpointRejected',  { text='', texthl='gray', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+        vim.fn.sign_define('DapStopped',             { text='', texthl='green',  linehl='DapBreakpoint', numhl='DapBreakpoint' })
+        vim.fn.sign_define('DapLogPoint',            { text='', texthl='blue', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+
+
+        vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+        vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+        vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+        vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
 	end,
 }
