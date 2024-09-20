@@ -1,10 +1,6 @@
 --------------------------------- modification to dap behavior ------------------------------------
 local DapUiLeftElements = {
-	Scopes = { Regex = "DAP Scopes$",
-		Id = "scopes",
-		Order = 1,
-		WindowIndex = 1,
-	},
+	Scopes = { Regex = "DAP Scopes$", Id = "scopes", Order = 1, WindowIndex = 1 },
 	Brakepoints = {
 		Regex = "DAP Breakpoints$",
 		Id = "breakpoints",
@@ -369,6 +365,14 @@ end
 -- end
 
 -------------------------------------- Actual dap configuration -----------------------------------------------
+
+local vscode_debug_install;
+if vim.g.windows then
+    vscode_debug_install = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out"
+else
+    vscode_debug_install = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
+end
+
 return {
 	"mfussenegger/nvim-dap",
 	recommended = true,
@@ -380,6 +384,12 @@ return {
 		"stevearc/overseer.nvim", -- make launch.json's PreLaunchTask work
 		{ "Joakker/lua-json5", run = "./install.sh" }, -- to make kson comment work. some times install.sh dose not work and need to be manually run
 		"leoluz/nvim-dap-go",
+		{
+			"microsoft/vscode-js-debug",
+			build = vscode_debug_install,
+
+			version = "1.*",
+		},
 	},
 	config = function()
 		local dap = require("dap")
@@ -429,47 +439,48 @@ return {
 			},
 		}
 
-        dap.configurations.rust = {
-          {
-            name = "Rust debug",
-            type = "codelldb",
-            request = "launch",
-            showDisassembly = "never",
-            program = function()
-                vim.fn.jobstart('cargo build')
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-            end,
-            cwd = '${workspaceFolder}',
-            stopOnEntry = true,
-          },
-        }
+		dap.configurations.rust = {
+			{
+				name = "Rust debug",
+				type = "codelldb",
+				request = "launch",
+				showDisassembly = "never",
+				program = function()
+					vim.fn.jobstart("cargo build")
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = true,
+			},
+		}
 
-        --------------------- CHROME ----------------------------
-		local chrome_debugger_path = mason_registry.get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebugAdapter.js"
+		--------------------- CHROME ----------------------------
+		local chrome_debugger_path = mason_registry.get_package("chrome-debug-adapter"):get_install_path()
+			.. "/out/src/chromeDebugAdapter.js"
 		-- dap.adapters.chrome = {
 		-- 	type = "executable",
 		--           command = chrome_debugger_path
 		-- }
 
-        dap.adapters.chrome = {
-            type = "executable",
-            command = "node",
-            args = {chrome_debugger_path}
-        }
+		dap.adapters.chrome = {
+			type = "executable",
+			command = "node",
+			args = { chrome_debugger_path },
+		}
 
-        dap.configurations.javascript = { -- change this to javascript if needed
-            {
-                name = "Attach to chrome",
-                type = "chrome",
-                request = "attach",
-                program = "${file}",
-                cwd = vim.fn.getcwd(),
-                sourceMaps = true,
-                protocol = "inspector",
-                port = 9222,
-                webRoot = "${workspaceFolder}"
-            }
-        }
+		dap.configurations.javascript = { -- change this to javascript if needed
+			{
+				name = "Attach to chrome",
+				type = "chrome",
+				request = "attach",
+				program = "${file}",
+				cwd = vim.fn.getcwd(),
+				sourceMaps = true,
+				protocol = "inspector",
+				port = 9222,
+				webRoot = "${workspaceFolder}",
+			},
+		}
 		------------------ OPEN LAUNCH.JSON CONFIGURATIONS ---------------------------
 
 		local vscode = require("dap.ext.vscode")
@@ -536,22 +547,35 @@ return {
 			"",
 			{ desc = "[D]ebug Toggle Bottom UI", callback = toggleBottomDapUi }
 		)
-        vim.api.nvim_set_hl(0, "blue",   { fg = "#56b6c2" })
-        vim.api.nvim_set_hl(0, "green",  { fg = "#98c379" })
-        vim.api.nvim_set_hl(0, "red", { fg = "#ca1143" })
-        vim.api.nvim_set_hl(0, "gray", { fg = "#cccccc" })
+		vim.api.nvim_set_hl(0, "blue", { fg = "#56b6c2" })
+		vim.api.nvim_set_hl(0, "green", { fg = "#98c379" })
+		vim.api.nvim_set_hl(0, "red", { fg = "#ca1143" })
+		vim.api.nvim_set_hl(0, "gray", { fg = "#cccccc" })
 
-        vim.fn.sign_define('DapBreakpoint',          { text='', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
-        vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
-        vim.fn.sign_define('DapBreakpointRejected',  { text='', texthl='gray', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-        vim.fn.sign_define('DapStopped',             { text='', texthl='green',  linehl='DapBreakpoint', numhl='DapBreakpoint' })
-        vim.fn.sign_define('DapLogPoint',            { text='', texthl='blue', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+		vim.fn.sign_define(
+			"DapBreakpoint",
+			{ text = "", texthl = "red", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapBreakpointCondition",
+			{ text = "", texthl = "red", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapBreakpointRejected",
+			{ text = "", texthl = "gray", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapStopped",
+			{ text = "", texthl = "green", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapLogPoint",
+			{ text = "", texthl = "blue", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
 
-
-        vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-        vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-        vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-        vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
-
+		vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+		vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+		vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+		vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 	end,
 }

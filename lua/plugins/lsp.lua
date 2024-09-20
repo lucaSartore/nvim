@@ -100,8 +100,7 @@ return {
 					settings = {
 						python = {
 							analysis = {
-								typeCheckingMode = "standard", -- standard type checking
-								-- typeCheckingMode = "strict", -- check for type hint as well
+                                typeCheckingMode = "standard", -- options: ["off", "basic", "standard", "strict"]
 							},
 						},
 					},

@@ -17,6 +17,9 @@
 -- eye tracker
 
 
+-- if you are or not on windows os
+vim.g.windows = true
+
 local time = os.clock()
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
