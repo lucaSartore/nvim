@@ -390,6 +390,7 @@ return {
 
 			version = "1.*",
 		},
+        "mxsdev/nvim-dap-vscode-js"
 	},
 	config = function()
 		local dap = require("dap")
