@@ -14,6 +14,7 @@
     choco install lazygit
     choco install ripgrep
     choco install fd
+    choco install make 
     ```
 
  - remap terminal keybindings
