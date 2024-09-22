@@ -1,14 +1,12 @@
 ----------------- ToDo ------------------------------------
--- icons
 -- nvim dap ui
 -- dap keybindings
 -- dap ui toggle exeception kinds
 -- pass all check health
 -- copilot
 -- list of diagnostics
--- ctrl + tab for recent buffers
 -- open folder / open recent folder
-
+-- js debugger dose not terminate correctly
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
 -- neo tree jump to folder/file that start with letter
@@ -20,7 +18,16 @@
 -- if you are or not on windows os
 vim.g.windows = true
 
+
+
+
 local time = os.clock()
+
+-- make the lua folder part of the runtime path, so that it is accessible by the import command
+--
+--
+
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -117,6 +124,10 @@ vim.opt.clipboard = "unnamedplus"
 -- left and right wrapping
 vim.opt.whichwrap = "b,s,h,l"
 
+package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "\\lua"
+vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "\\lua")
+
 require("config.lazy")
 
+require("config.exception_breakpoints")
 -- vim.print(string.format("elapsed time: %.2f\n", os.clock() - time))

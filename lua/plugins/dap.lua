@@ -201,12 +201,12 @@ return {
 			end,
 		})
 
-		vim.api.nvim_set_keymap(
-			"n",
-			"<leader>dc",
-			"",
-			{ desc = "[D]ebug [C]ondition brakepoints", callback = dap.set_exception_breakpoints }
-		)
+		-- vim.api.nvim_set_keymap(
+		-- 	"n",
+		-- 	"<leader>dc",
+		-- 	"",
+		-- 	{ desc = "[D]ebug [C]ondition brakepoints", callback = dap.set_exception_breakpoints }
+		-- )
 
 		-- motions
 		vim.api.nvim_set_keymap("n", "<F5>", "", { desc = "Debug continue", callback = dap.continue })
