@@ -1,20 +1,11 @@
-local vscode_debug_install
-if vim.g.windows then
-	vscode_debug_install =
-		"npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out"
-else
-	vscode_debug_install =
-		"npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
-end
 
 local js_based_languages = {
-  "typescript",
-  "javascript",
-  "typescriptreact",
-  "javascriptreact",
-  "vue",
+	"typescript",
+	"javascript",
+	"typescriptreact",
+	"javascriptreact",
+	"vue",
 }
-
 
 return {
 	"mfussenegger/nvim-dap",
@@ -29,8 +20,13 @@ return {
 		"leoluz/nvim-dap-go",
 		{
 			"microsoft/vscode-js-debug",
-			build = vscode_debug_install,
-
+			build = (function()
+				if vim.g.windows then
+					return "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out"
+				else
+					return "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
+				end
+			end)(),
 			version = "1.*",
 		},
 		"mxsdev/nvim-dap-vscode-js",
@@ -101,14 +97,14 @@ return {
 		require("dap-vscode-js").setup({
 			node_path = "node",
 			debugger_path = vim.fn.stdpath("data") .. "\\lazy\\vscode-js-debug",
-            adapters = {
-              "chrome",
-              "pwa-node",
-              "pwa-chrome",
-              "pwa-msedge",
-              "pwa-extensionHost",
-              "node-terminal",
-            },
+			adapters = {
+				"chrome",
+				"pwa-node",
+				"pwa-chrome",
+				"pwa-msedge",
+				"pwa-extensionHost",
+				"node-terminal",
+			},
 		})
 
 		for _, language in ipairs(js_based_languages) do
@@ -146,8 +142,7 @@ return {
 								if url == nil or url == "" then
 									return
 								else
-
-                                    vim.g.default_website_launch = url
+									vim.g.default_website_launch = url
 									coroutine.resume(co, url)
 								end
 							end)
@@ -167,7 +162,7 @@ return {
 			}
 		end
 
-        vim.g.default_website_launch = "http://localhost:8081"
+		vim.g.default_website_launch = "http://localhost:8081"
 		------------------ OPEN LAUNCH.JSON CONFIGURATIONS ---------------------------
 
 		local vscode = require("dap.ext.vscode")
@@ -176,7 +171,6 @@ return {
 		if vim.fn.filereadable(".vscode/launch.json") then
 			vscode.load_launchjs()
 		end
-
 
 		---------------------- KEYBINDINGS ---------------------------------
 
@@ -191,9 +185,22 @@ return {
 		vim.api.nvim_set_keymap("n", "<leader>dB", "", {
 			desc = "[D]ebug [B]reakpoint (with condition)",
 			callback = function()
-				dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+				local condition = vim.fn.input('Breakpoint condition [e.g. "x == 5"]')
+				local count = vim.fn.input('Breakpoint count  [e.g. "8"]')
+				local log = vim.fn.input('Breakpoint log  [e.g. "a is equal to {a}"]')
+				if condition == "" then
+					condition = nil
+				end
+				if count == "" then
+					count = nil
+				end
+				if log == "" then
+					log = nil
+				end
+				dap.set_breakpoint(condition, count, log)
 			end,
 		})
+
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>dc",
@@ -206,6 +213,5 @@ return {
 		vim.api.nvim_set_keymap("n", "<F10>", "", { desc = "Debug continue", callback = dap.step_over })
 		vim.api.nvim_set_keymap("n", "<F11>", "", { desc = "Debug continue", callback = dap.step_into })
 		vim.api.nvim_set_keymap("n", "<F12>", "", { desc = "Debug continue", callback = dap.step_out })
-
 	end,
 }
