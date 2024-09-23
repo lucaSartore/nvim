@@ -37,10 +37,18 @@ local function options_equal(opt1, opt2)
 	end)
 end
 
-dap.listeners.after['launch']['exception_brakepoints'] = function(_, _)
+local function is_dap_connected()
+   return dap.session() ~= nil
+end
+
+local function send_brakepoints_request()
     if selected_options == nil then return end
     local filters = map(function (x) return x.filter end, selected_options)
     dap.set_exception_breakpoints(filters)
+end
+
+dap.listeners.after['launch']['exception_brakepoints'] = function(_, _)
+    send_brakepoints_request()
 end
 
 dap.listeners.after["initialize"]["exception_brakepoints"] = function(session, _)
@@ -126,6 +134,9 @@ local function set_exception_brakepoints()
 
     local callback = function (options)
         selected_options = options
+        if is_dap_connected() then
+            send_brakepoints_request()
+        end
     end
 
     print(available_options ~= nil, selected_options ~= nil)
