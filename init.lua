@@ -129,5 +129,4 @@ vim.opt.runtimepath:append(vim.fn.stdpath("config") .. "\\lua")
 
 require("config.lazy")
 
-require("config.exception_breakpoints")
 -- vim.print(string.format("elapsed time: %.2f\n", os.clock() - time))
