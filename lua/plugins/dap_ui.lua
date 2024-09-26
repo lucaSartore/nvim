@@ -303,7 +303,6 @@ return {
 	"rcarriga/nvim-dap-ui",
 	dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim", "mfussenegger/nvim-dap" },
     config = function()
-
 		-------------------     UI     ------------------------------
 		require("dapui").setup({
 			layouts = DapUiLayoutConfig,
@@ -313,6 +312,8 @@ return {
 		})
 
 		-- debug UI keybindings
+		vim.api.nvim_set_keymap( "n", "<leader>de", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
+		vim.api.nvim_set_keymap( "v", "<leader>de", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>du",

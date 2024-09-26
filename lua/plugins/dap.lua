@@ -176,13 +176,7 @@ return {
 		---------------------- KEYBINDINGS ---------------------------------
 
 		-- Brakepoints
-		vim.api.nvim_set_keymap("n", "<F9>", "", { desc = "Toggle Brakepoints", callback = dap.toggle_breakpoint })
-		vim.api.nvim_set_keymap(
-			"n",
-			"<leader>db",
-			"",
-			{ desc = "[D]ebug [B]reakpoint", callback = dap.toggle_breakpoint }
-		)
+		vim.api.nvim_set_keymap( "n", "<leader>db", "", { desc = "[D]ebug [B]reakpoint", callback = dap.toggle_breakpoint })
 		vim.api.nvim_set_keymap("n", "<leader>dB", "", {
 			desc = "[D]ebug [B]reakpoint (with condition)",
 			callback = function()
@@ -202,15 +196,10 @@ return {
 			end,
 		})
 
-		-- vim.api.nvim_set_keymap(
-		-- 	"n",
-		-- 	"<leader>dc",
-		-- 	"",
-		-- 	{ desc = "[D]ebug [C]ondition brakepoints", callback = dap.set_exception_breakpoints }
-		-- )
 
 		-- motions
 		vim.api.nvim_set_keymap("n", "<F5>", "", { desc = "Debug continue", callback = dap.continue })
+		vim.api.nvim_set_keymap("n", "<F9>", "", { desc = "Toggle Brakepoints", callback = dap.toggle_breakpoint })
 		vim.api.nvim_set_keymap("n", "<F10>", "", { desc = "Debug continue", callback = dap.step_over })
 		vim.api.nvim_set_keymap("n", "<F11>", "", { desc = "Debug continue", callback = dap.step_into })
 		vim.api.nvim_set_keymap("n", "<F12>", "", { desc = "Debug continue", callback = dap.step_out })
