@@ -14,7 +14,7 @@ return {
 		{ "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim" } },
 		"jay-babu/mason-nvim-dap.nvim",
 		"williamboman/mason.nvim",
-		"theHamsta/nvim-dap-virtual-text",
+		-- "theHamsta/nvim-dap-virtual-text",
 		"stevearc/overseer.nvim", -- make launch.json's PreLaunchTask work
 		{ "Joakker/lua-json5", run = "./install.sh" }, -- to make kson comment work. some times install.sh dose not work and need to be manually run
 		"leoluz/nvim-dap-go",
@@ -34,7 +34,7 @@ return {
 	config = function()
 		local dap = require("dap")
 		require("overseer").setup()
-		require("nvim-dap-virtual-text").setup()
+		-- require("nvim-dap-virtual-text").setup()
 
 		vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
@@ -45,6 +45,7 @@ return {
 			type = "executable",
 			command = debugpy_path .. "\\venv\\Scripts\\python",
 			args = { "-m", "debugpy.adapter" },
+            detached = false,
 			options = {
 				source_filetype = "python",
 			},
