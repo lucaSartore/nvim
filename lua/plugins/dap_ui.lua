@@ -300,7 +300,8 @@ local function openDapUi()
 end
 
 return {
-	"rcarriga/nvim-dap-ui",
+	-- "rcarriga/nvim-dap-ui",
+    "lucaSartore/nvim-dap-ui", -- replacing with my own fork until they are merged
 	dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim", "mfussenegger/nvim-dap" },
     config = function()
 		-------------------     UI     ------------------------------
