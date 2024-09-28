@@ -4,7 +4,8 @@
 -- list of diagnostics
 -- open folder / open recent folder
 -- js debugger dose not terminate correctly
--- dap virtual text
+-- make nvim dap remember previous coning
+-- disable and enable global spelling
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
 -- neo tree jump to folder/file that start with letter
