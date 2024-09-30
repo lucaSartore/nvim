@@ -37,6 +37,7 @@ return {
 					------------------------------------- KEYBINDINGS --------------------------------------------------------
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 					map("gu", require("telescope.builtin").lsp_references, "[G]oto [U]sage")
+					map("gi", require("telescope.builtin").lsp_implementations,"[G]oto [I]mplementations")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("<leader>ca", ":Lspsaga code_action<CR>", "[C]ode [A]ction")
 					map("<leader>pu", ":Lspsaga incoming_calls<CR>", "[P]eack [U]sage")
