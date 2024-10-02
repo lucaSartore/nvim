@@ -6,7 +6,6 @@
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
 -- neo tree jump to folder/file that start with letter
-
 -------------- cool ideas --------------------
 -- eye tracker
 

@@ -1,5 +1,5 @@
 -- Function to show the full error message in a floating window
-function show_diagnostics()
+local function show_diagnostics()
 	local opts = {
 		focusable = false,
 		close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
@@ -22,6 +22,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/nvim-cmp",
 			"glepnir/lspsaga.nvim",
+            "mfussenegger/nvim-lint"
 		},
 		config = function()
 			-- lsp attach event
@@ -80,8 +81,9 @@ return {
 			vim.api.nvim_set_keymap(
 				"n",
 				"ge",
-				"<cmd>lua show_diagnostics()<CR>",
-				{ noremap = true, silent = true, desc = "Show error message" }
+                "",
+				-- "<cmd>lua show_diagnostics()<CR>",
+				{ noremap = true, silent = true, desc = "Show error message", callback = show_diagnostics }
 			)
 
 			-- capabilities of local lsp server, used to comunicate with the language specific lsp
@@ -120,8 +122,16 @@ return {
                 "gofumpt", -- golang formatter
                 "go-debug-adapter",
                 "codelldb", -- rust (and all llvm stuff) debugger
-                "chrome-debug-adapter" -- chrome debugger
+                "cspell"
 			})
+
+            -- better spelling for code
+            -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+            --   callback = function()
+            --     require("lint").try_lint("cspell")
+            --   end,
+            -- })
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			-- setting up the attaching the LSP with correct capabilities and server settings
