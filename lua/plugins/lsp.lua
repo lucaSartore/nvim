@@ -124,7 +124,8 @@ return {
                 "gofumpt", -- golang formatter
                 "go-debug-adapter",
                 "codelldb", -- rust (and all llvm stuff) debugger
-                "cspell"
+                "cspell",
+                "haskell-debug-adapter"
 			})
 
             -- better spelling for code

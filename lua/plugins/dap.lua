@@ -37,7 +37,7 @@ return {
 		require("nvim-dap-virtual-text").setup({
 			clear_on_continue = true, -- clear virtual text on "continue" (might cause flickering when stepping)
 			display_callback = function(variable, buf, stackframe, node, options)
-                -- limit the size of the displayed text
+				-- limit the size of the displayed text
 				local value = variable.value:gsub("%s+", " ")
 				if #value > 35 then
 					value = value:sub(0, 32) .. "..."
@@ -172,6 +172,38 @@ return {
 		end
 
 		vim.g.default_website_launch = "http://localhost:8081"
+
+		--------------------------------- HASKELL ---------------------------------
+		local haskelldbg = mason_registry.get_package("haskell-debug-adapter")
+		local haskell_cmd = haskelldbg:get_install_path() .. "/haskell-debug-adapter"
+
+		dap.adapters.ghc = {
+			type = "executable",
+			command = haskell_cmd,
+		}
+
+		dap.configurations.haskell = {
+			{
+
+				name = "Haskell debug main",
+				type = "ghc",
+				request = "launch",
+				workspace = "${workspaceFolder}",
+				startup = "${workspaceFolder}/main.hs",
+				startupFunc = "", -- defaults to 'main' if not set
+				startupArgs = "",
+				stopOnEntry = false,
+				mainArgs = "",
+				logFile = vim.fn.stdpath('data') .. '/haskell-dap.log',
+				logLevel = "Error", -- 'Debug' | 'Info' | 'Warning' | 'Error'
+				ghciEnv = vim.empty_dict(),
+				ghciPrompt = "λ: ",
+				ghciInitialPrompt = "ghci> ",
+				ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
+				forceInspect = false,
+			},
+		}
+
 		------------------ OPEN LAUNCH.JSON CONFIGURATIONS ---------------------------
 
 		local vscode = require("dap.ext.vscode")
