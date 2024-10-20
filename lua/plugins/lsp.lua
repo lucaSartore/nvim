@@ -122,6 +122,7 @@ return {
 				"debugpy", -- python debugger
                 "biome", -- javascript formatter
                 "gofumpt", -- golang formatter
+                "ormolu", -- haskell formatter
                 "go-debug-adapter",
                 "codelldb", -- rust (and all llvm stuff) debugger
                 "cspell",
@@ -161,7 +162,8 @@ return {
 					lua = { require("formatter.filetypes.lua").stylua },
 					python = { require("formatter.filetypes.python").black },
                     javascript = { require("formatter.filetypes.javascript").biome },
-                    go = { require("formatter.filetypes.go").gofumpt }
+                    go = { require("formatter.filetypes.go").gofumpt },
+                    haskell = { require("formatter.filetypes.haskell").ormolu }
 				},
 			})
 		end,
