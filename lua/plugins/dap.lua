@@ -202,6 +202,24 @@ return {
 				ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
 				forceInspect = false,
 			},
+            {
+                name = "Haskell debug current file",
+				type = "ghc",
+				request = "launch",
+				workspace = "${fileDirname}",
+				startup = "${file}",
+				startupFunc = "", -- defaults to 'main' if not set
+				startupArgs = "",
+				stopOnEntry = false,
+				mainArgs = "",
+				logFile = vim.fn.stdpath('data') .. '/haskell-dap.log',
+				logLevel = "Error", -- 'Debug' | 'Info' | 'Warning' | 'Error'
+				ghciEnv = vim.empty_dict(),
+				ghciPrompt = "λ: ",
+				ghciInitialPrompt = "ghci> ",
+				ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
+				forceInspect = false,
+            }
 		}
 
 		------------------ OPEN LAUNCH.JSON CONFIGURATIONS ---------------------------
