@@ -96,7 +96,7 @@ return {
 			local language_servers = {
 				lua_ls = {},
 				rust_analyzer = {},
-				omnisharp = {},
+				-- omnisharp = { }, -- too slow for my current project size
                 ts_ls = {},
                 gopls = {},
 				pyright = {
@@ -108,6 +108,7 @@ return {
 						},
 					},
 				},
+                hls = {},
 			}
 
 			-- reminder: use :Mason to see/update the installed LSPs/DAPs
