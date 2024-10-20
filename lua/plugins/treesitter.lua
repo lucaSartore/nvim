@@ -23,7 +23,8 @@ return {
 				"go",
 				"markdown",
 				"markdown_inline",
-                "dap_repl"
+                "dap_repl",
+                "haskell"
 			},
 			sync_install = false,
 			highlight = { enable = true },
