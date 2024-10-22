@@ -106,6 +106,14 @@ vim.api.nvim_set_keymap("n", "<tab><tab>", ":b# <CR>", { noremap = true, silent 
 -- use system clipboard
 vim.opt.clipboard = "unnamedplus"
 
+-- Yank to 'a' register (non-temporary register)
+vim.api.nvim_set_keymap('n', '<leader>y', '"ay', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>y', '"aY', { noremap = true, silent = true })
+
+-- Paste from 'a' register
+vim.api.nvim_set_keymap('n', '<leader>p', '"ap', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>p', '"ap', { noremap = true, silent = true })
+
 -- left and right wrapping
 vim.opt.whichwrap = "b,s,h,l"
 
