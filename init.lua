@@ -3,6 +3,7 @@
 -- copilot
 -- open folder / open recent folder
 -- disable and enable global spelling
+-- thmx
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
 -- neo tree jump to folder/file that start with letter
@@ -102,6 +103,9 @@ vim.api.nvim_set_keymap("n", "D", '"_d', { noremap = true, silent = false })
 
 -- mode to previous buffer
 vim.api.nvim_set_keymap("n", "<tab><tab>", ":b# <CR>", { noremap = true, silent = false })
+
+-- quicker save
+vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = false })
 
 -- use system clipboard
 vim.opt.clipboard = "unnamedplus"
