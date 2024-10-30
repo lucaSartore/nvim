@@ -263,8 +263,8 @@ return {
 		vim.api.nvim_set_keymap("n", "<F5>", "", { desc = "Debug continue", callback = dap.continue })
 		vim.api.nvim_set_keymap("n", "<F6>", "", { desc = "Debug run last session", callback = dap.run_last })
 		vim.api.nvim_set_keymap("n", "<F9>", "", { desc = "Toggle Brakepoints", callback = dap.toggle_breakpoint })
-		vim.api.nvim_set_keymap("n", "<F10>", "", { desc = "Debug continue", callback = dap.step_over })
-		vim.api.nvim_set_keymap("n", "<F11>", "", { desc = "Debug continue", callback = dap.step_into })
-		vim.api.nvim_set_keymap("n", "<F12>", "", { desc = "Debug continue", callback = dap.step_out })
+		vim.api.nvim_set_keymap("n", "<F10>", "", { desc = "Debug step over", callback = dap.step_over })
+		vim.api.nvim_set_keymap("n", "<F11>", "", { desc = "Debug step into", callback = dap.step_into })
+		vim.api.nvim_set_keymap("n", "<F12>", "", { desc = "Debug step out", callback = dap.step_out })
 	end,
 }
