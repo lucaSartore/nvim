@@ -313,7 +313,9 @@ return {
 
 		-- debug UI keybindings
 		vim.api.nvim_set_keymap( "n", "<leader>de", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
+		vim.api.nvim_set_keymap( "n", "<F4>", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
 		vim.api.nvim_set_keymap( "v", "<leader>de", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
+		vim.api.nvim_set_keymap( "v", "<F4>", "", { desc = "[D]ebug [B]reakpoint", callback = require("dapui").eval})
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>du",
