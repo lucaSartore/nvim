@@ -21,7 +21,7 @@ return {
 			"microsoft/vscode-js-debug",
 			build = (function()
 				if vim.g.windows then
-					return "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out"
+					return "cmd.exe /c \"npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out\""
 				else
 					return "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
 				end
@@ -69,6 +69,7 @@ return {
 				type = "debugpy",
 				request = "launch",
 				name = "Launch file",
+                cwd = "${fileDirname}",
 				program = "${file}",
 				pythonPath = vim.fn.exepath("python"),
 			},

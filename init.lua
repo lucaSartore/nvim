@@ -122,8 +122,8 @@ vim.api.nvim_set_keymap('v', '<leader>p', '"ap', { noremap = true, silent = true
 vim.opt.whichwrap = "b,s,h,l"
 
 -- using powershell as default terminal
--- vim.opt.shell='powershell.exe'
--- vim.cmd('set shellcmdflag="-c"')
+vim.opt.shell='powershell.exe'
+vim.cmd('set shellcmdflag="-c"')
 
 require("config.lazy")
 
