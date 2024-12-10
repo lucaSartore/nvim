@@ -32,9 +32,6 @@ return {
 			pickers = {
 				buffers = {
 					sort_mru = true, -- Sort buffers by most recent usage
-					-- ignore_current_buffer = true, -- Ignore the current buffer in the list
-					sort_lastused = true,
-					initial_mode = "normal",
 				    path_display = { "tail" },
 				},
 			}
