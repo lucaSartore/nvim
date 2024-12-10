@@ -1,5 +1,9 @@
 -- remember to install the lazygit dependency
 -- choco install lazygit
+vim.g.lazygit_on_exit_callback = function ()
+    vim.cmd(":Neotree toggle")
+    vim.cmd(":Neotree toggle")
+end
 
 return {
 	"kdheepak/lazygit.nvim",
