@@ -22,7 +22,6 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/nvim-cmp",
 			"glepnir/lspsaga.nvim",
-            "mfussenegger/nvim-lint"
 		},
 		config = function()
 			-- lsp attach event
@@ -129,13 +128,6 @@ return {
                 "cspell",
                 "haskell-debug-adapter"
 			})
-
-            -- better spelling for code
-            -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-            --   callback = function()
-            --     require("lint").try_lint("cspell")
-            --   end,
-            -- })
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
