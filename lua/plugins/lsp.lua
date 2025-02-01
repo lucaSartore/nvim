@@ -152,8 +152,8 @@ return {
 			require("formatter").setup({
 				logging = false,
 				filetype = {
-					lua = { require("formatter.filetypes.lua").stylua },
-					python = { require("formatter.filetypes.python").black },
+				    lua = { require("formatter.filetypes.lua").stylua },
+			        python = { require("formatter.filetypes.python").black },
                     javascript = { require("formatter.filetypes.javascript").biome },
                     typescript = { require("formatter.filetypes.typescript").biome },
                     typescriptreact = { require("formatter.filetypes.typescriptreact").biome },
