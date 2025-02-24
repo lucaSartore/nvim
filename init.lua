@@ -107,7 +107,7 @@ vim.api.nvim_set_keymap("n", "D", '"_d', { noremap = true, silent = false })
 vim.api.nvim_set_keymap("n", "<tab><tab>", ":b# <CR>", { noremap = true, silent = false })
 
 -- quicker save
-vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<C-s>", ":silent w<CR>", { noremap = true, silent = false })
 
 -- use system clipboard
 vim.opt.clipboard = "unnamedplus"
