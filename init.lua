@@ -68,8 +68,6 @@ vim.o.number = true
 -- always keep a column of space to the left for brake-points and other hinting elements
 vim.opt.signcolumn = "yes:1"
 
--- backspace to delete
-vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
 
 -- to maintain the selection after indenting
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true })
@@ -123,6 +121,9 @@ vim.api.nvim_set_keymap('v', '<leader>p', '"ap', { noremap = true, silent = true
 -- left and right wrapping
 vim.opt.whichwrap = "b,s,h,l"
 
+-- backspace to delete
+vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
+
 -- using powershell as default terminal
 -- Some of the options are required to make powershell work with toggleterm/lazygit
 -- credit: https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#using-toggleterm-with-powershell
@@ -140,5 +141,3 @@ end
 vim.cmd('set shellcmdflag="-c"')
 
 require("config.lazy")
-
--- vim.print(string.format("elapsed time: %.2f\n", os.clock() - time))
