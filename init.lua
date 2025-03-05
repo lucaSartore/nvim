@@ -29,11 +29,6 @@ vim.o.expandtab = true
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
--- spell checker
-vim.opt.spelllang = "en_us,it"
-vim.opt.spell = true
-vim.opt.spelloptions = "camel"
-
 -- to quickly move up and down (similar to <C-b> and <C-f> but more intuitive keybindings for me)
 vim.api.nvim_set_keymap("n", "<C-k>", "10k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "10j", { noremap = true, silent = true })
