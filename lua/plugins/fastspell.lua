@@ -25,7 +25,7 @@ return {
         vim.api.nvim_set_keymap("n", "<leader>sc", "", {
             noremap = true,
             silent = true,
-            desc = "Debug [S]pell [C]heck",
+            desc = "[S]pell [C]heck",
             callback = function()
                 local buffer = vim.api.nvim_get_current_buf()
                 local first_line = 0
@@ -37,7 +37,7 @@ return {
         vim.api.nvim_set_keymap("n", "<leader>si", "", {
             noremap = true,
             silent = true,
-            desc = "Debug [S]pell [I]gnore",
+            desc = "[S]pell [I]gnore",
             callback = function()
                 fastspell.sendSpellCheckRequest(0,0)
             end,
