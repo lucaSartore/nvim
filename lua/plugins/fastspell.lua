@@ -10,7 +10,9 @@ return {
 	config = function()
 		local fastspell = require("fastspell")
 
-		fastspell.setup()
+        fastspell.setup({
+            cspell_json_file_path = vim.fn.stdpath("config") .. "/cspell.json"
+        })
 
 		vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI"}, {
 			callback = function(_)
