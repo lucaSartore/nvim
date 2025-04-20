@@ -43,7 +43,7 @@ return {
 			end
 			
 			if enabled_languages.is_language_enabled("typescript") or enabled_languages.is_language_enabled("javascript") then
-				table.insert(ensure_installed, "tsserver")
+				table.insert(ensure_installed, "ts_ls")
 				table.insert(ensure_installed, "biome") -- JavaScript/TypeScript formatter
 			end
 			
