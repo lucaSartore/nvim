@@ -42,7 +42,7 @@ return {
 				table.insert(ensure_installed, "debugpy") -- Python debugger
 			end
 			
-			if enabled_languages.is_language_enabled("typescript") or enabled_languages.is_language_enabled("javascript") then
+			if enabled_languages.is_language_enabled("javascript") then
 				table.insert(ensure_installed, "ts_ls")
 				table.insert(ensure_installed, "biome") -- JavaScript/TypeScript formatter
 			end
