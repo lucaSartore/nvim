@@ -1,6 +1,7 @@
 -- Main DAP configuration file
 local dap = require("dap")
 local M = {}
+local enabled_languages = require("language_tools.enabled_languages")
 
 -- Initialize all DAP related configurations
 function M.setup()
@@ -10,12 +11,26 @@ function M.setup()
     -- Configure DAP highlight
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
     
-    -- Set up individual language debugger adapters
-    require("language_tools.dap.python").setup()
-    require("language_tools.dap.go").setup()
-    require("language_tools.dap.rust").setup()
-    require("language_tools.dap.javascript").setup()
-    require("language_tools.dap.haskell").setup()
+    -- Set up individual language debugger adapters based on enabled languages
+    if enabled_languages.is_language_enabled("python") then
+        require("language_tools.dap.python").setup()
+    end
+    
+    if enabled_languages.is_language_enabled("go") then
+        require("language_tools.dap.go").setup()
+    end
+    
+    if enabled_languages.is_language_enabled("rust") then
+        require("language_tools.dap.rust").setup()
+    end
+    
+    if enabled_languages.is_language_enabled("javascript") or enabled_languages.is_language_enabled("typescript") then
+        require("language_tools.dap.javascript").setup()
+    end
+    
+    if enabled_languages.is_language_enabled("haskell") then
+        require("language_tools.dap.haskell").setup()
+    end
     
     -- Load launch.json configurations if available
     M.setup_launch_json()
