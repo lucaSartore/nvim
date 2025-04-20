@@ -15,32 +15,49 @@ return {
 			-- Configure all LSP related components
 			require("language_tools.lsp").setup()
 			
+			-- Use enabled_languages configuration for tool installation
+			local enabled_languages = require("language_tools.enabled_languages")
+			
+			-- Common tools always installed
 			local ensure_installed = {
-				-- LSP servers
-				"lua_ls",
-				"rust_analyzer",
-				"pyright",
-				"tsserver",
-				"gopls",
-				"hls",
-				
-				-- Formatters and linters
-				"stylua", -- Used to format Lua code
-				"black", -- python formatter
-				"debugpy", -- python debugger
-				"biome", -- javascript formatter
-				"gofumpt", -- golang formatter
-				"ormolu", -- haskell formatter
-				"rustfmt", -- rust formatter
-				
-				-- Debug adapters
-				"go-debug-adapter",
-				"codelldb", -- rust (and all llvm stuff) debugger
-				"haskell-debug-adapter",
-				
-				-- Other tools
+				-- Common tools
 				"cspell",
 			}
+			
+			-- LSP servers based on enabled languages
+			if enabled_languages.is_language_enabled("lua") then
+				table.insert(ensure_installed, "lua_ls")
+				table.insert(ensure_installed, "stylua") -- Lua formatter
+			end
+			
+			if enabled_languages.is_language_enabled("rust") then
+				table.insert(ensure_installed, "rust_analyzer")
+				table.insert(ensure_installed, "rustfmt") -- Rust formatter
+				table.insert(ensure_installed, "codelldb") -- Rust (and all llvm stuff) debugger
+			end
+			
+			if enabled_languages.is_language_enabled("python") then
+				table.insert(ensure_installed, "pyright")
+				table.insert(ensure_installed, "black") -- Python formatter
+				table.insert(ensure_installed, "debugpy") -- Python debugger
+			end
+			
+			if enabled_languages.is_language_enabled("typescript") or enabled_languages.is_language_enabled("javascript") then
+				table.insert(ensure_installed, "tsserver")
+				table.insert(ensure_installed, "biome") -- JavaScript/TypeScript formatter
+			end
+			
+			if enabled_languages.is_language_enabled("go") then
+				table.insert(ensure_installed, "gopls")
+				table.insert(ensure_installed, "gofumpt") -- Golang formatter
+				table.insert(ensure_installed, "go-debug-adapter")
+			end
+			
+			if enabled_languages.is_language_enabled("haskell") then
+				table.insert(ensure_installed, "hls")
+				table.insert(ensure_installed, "ormolu") -- Haskell formatter
+				table.insert(ensure_installed, "haskell-debug-adapter")
+			end
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		end,
