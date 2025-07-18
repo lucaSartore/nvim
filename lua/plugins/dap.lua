@@ -9,6 +9,7 @@ return {
 		"stevearc/overseer.nvim", -- make launch.json's PreLaunchTask work
 		{ "Joakker/lua-json5", run = "./install.sh" }, -- to make json comment work. some times install.sh dose not work and need to be manually run
 		"leoluz/nvim-dap-go",
+        "lucaSartore/nvim-dap-python",
 		{
 			"microsoft/vscode-js-debug",
 			build = (function()
