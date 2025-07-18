@@ -7,31 +7,31 @@ local enabled_languages = require("language_tools.enabled_languages")
 function M.setup()
     -- Set up DAP keybindings
     M.setup_keybindings()
-    
+
     -- Configure DAP highlight
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-    
+
     -- Set up individual language debugger adapters based on enabled languages
     if enabled_languages.is_language_enabled("python") then
         require("language_tools.dap.python").setup()
     end
-    
+
     if enabled_languages.is_language_enabled("go") then
         require("language_tools.dap.go").setup()
     end
-    
+
     if enabled_languages.is_language_enabled("rust") then
         require("language_tools.dap.rust").setup()
     end
-    
+
     if enabled_languages.is_language_enabled("javascript") then
         require("language_tools.dap.javascript").setup()
     end
-    
+
     if enabled_languages.is_language_enabled("haskell") then
         require("language_tools.dap.haskell").setup()
     end
-    
+
     -- Load launch.json configurations if available
     M.setup_launch_json()
 end
@@ -48,8 +48,11 @@ function M.setup_keybindings()
     vim.api.nvim_set_keymap("n", "<leader>dB", "", {
         desc = "[D]ebug [B]reakpoint (with condition)",
         callback = function()
+            ---@type string|nil
             local condition = vim.fn.input('Breakpoint condition [e.g. "x == 5"]')
+            ---@type string|nil
             local count = vim.fn.input('Breakpoint count  [e.g. "8"]')
+            ---@type string|nil
             local log = vim.fn.input('Breakpoint log  [e.g. "a is equal to {a}"]')
             if condition == "" then
                 condition = nil

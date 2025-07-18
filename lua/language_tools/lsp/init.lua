@@ -24,35 +24,40 @@ function M.setup()
     if require("cmp_nvim_lsp") then
         M.capabilities = vim.tbl_deep_extend("force", M.capabilities, require("cmp_nvim_lsp").default_capabilities())
     end
-    
+
     -- Set up LSP servers based on enabled languages
     if enabled_languages.is_language_enabled("lua") then
         require("language_tools.lsp.lua_ls").setup(M.capabilities)
     end
-    
+
     if enabled_languages.is_language_enabled("rust") then
         require("language_tools.lsp.rust_analyzer").setup(M.capabilities)
     end
-    
+
     if enabled_languages.is_language_enabled("python") then
         require("language_tools.lsp.pyright").setup(M.capabilities)
     end
-    
+
     if enabled_languages.is_language_enabled("javascript") then
         require("language_tools.lsp.ts_ls").setup(M.capabilities)
     end
-    
+
     if enabled_languages.is_language_enabled("go") then
         require("language_tools.lsp.gopls").setup(M.capabilities)
     end
-    
+
     if enabled_languages.is_language_enabled("haskell") then
         require("language_tools.lsp.hls").setup(M.capabilities)
     end
-    
+
+    if enabled_languages.is_language_enabled("csharp") then
+        require("language_tools.lsp.omnisharp").setup(M.capabilities)
+    end
+
+
     -- Set up LSP keybindings and highlighting
     M.setup_lsp_keymaps()
-    
+
     -- Set keybinding to show the full diagnostic message
     vim.api.nvim_set_keymap(
         "n",

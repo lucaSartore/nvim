@@ -11,10 +11,11 @@ function M.get_all_languages()
         "rust",
         "python",
         "javascript", -- (or typescript/typescriptreact ecc)
-        "go", 
+        "go",
         "haskell",
+        "csharp"
     }
-    
+
     return languages
 end
 
@@ -24,7 +25,7 @@ function M.load_config()
     if config_cache then
         return config_cache
     end
-    
+
     -- Check if the config file exists
     if vim.fn.filereadable(config_path) == 0 then
         -- Create default config with all languages enabled
@@ -32,7 +33,7 @@ function M.load_config()
         for _, lang in ipairs(M.get_all_languages()) do
             default_config[lang] = true
         end
-        
+
         -- Create the JSON file with default configuration
         local json_str = vim.fn.json_encode(default_config)
         local file = io.open(config_path, "w")
@@ -45,27 +46,27 @@ function M.load_config()
             return default_config
         end
     end
-    
+
     -- Read the config file
     local file = io.open(config_path, "r")
     if not file then
         vim.notify("Failed to read language configuration file", vim.log.levels.ERROR)
         return {}
     end
-    
+
     local content = file:read("*all")
     file:close()
-    
+
     -- Parse the JSON content
     local success, config = pcall(vim.fn.json_decode, content)
     if not success or type(config) ~= "table" then
         vim.notify("Invalid language configuration format", vim.log.levels.WARN)
         return {}
     end
-    
+
     -- Cache the configuration
     config_cache = config
-    
+
     return config
 end
 
@@ -80,7 +81,7 @@ function M.is_language_enabled(lang)
     local config = M.load_config()
     local all_languages = M.get_all_languages()
     local is_valid_language = false
-    
+
     -- Check if the language is valid
     for _, valid_lang in ipairs(all_languages) do
         if valid_lang == lang then
@@ -88,18 +89,18 @@ function M.is_language_enabled(lang)
             break
         end
     end
-    
+
     if not is_valid_language then
         vim.notify("Language '" .. lang .. "' is not defined in language tools configuration", vim.log.levels.WARN)
         return false
     end
-    
+
     -- Check if the language is missing from config (shouldn't happen with proper initialization)
     if config[lang] == nil then
         vim.notify("Language '" .. lang .. "' is missing in the configuration file", vim.log.levels.WARN)
         return false
     end
-    
+
     return config[lang] == true
 end
 
