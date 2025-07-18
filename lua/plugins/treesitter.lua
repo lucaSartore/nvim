@@ -24,7 +24,8 @@ return {
 				"markdown",
 				"markdown_inline",
                 "dap_repl",
-                "haskell"
+                "haskell",
+                "c_sharp"
 			},
 			sync_install = false,
 			highlight = { enable = true },
