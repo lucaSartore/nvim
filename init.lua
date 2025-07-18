@@ -43,7 +43,7 @@ vim.api.nvim_set_keymap("t", "<esc>", "", {
 
         -- if i am inside lazy git i don't want to remap the key
 		local buffer_name = vim.api.nvim_buf_get_name(0)
-		if string.sub(buffer_name, -8) == ":lazygit" then
+		if string.find(buffer_name, 'lazygit') then
 			local key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
 			vim.api.nvim_feedkeys(key, "n", false)
 			return
