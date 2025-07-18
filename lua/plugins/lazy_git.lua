@@ -9,7 +9,7 @@ end
 vim.g.lazygit_floating_window_scaling_factor = 1
 
 return {
-	"kdheepak/lazygit.nvim",
+	"lucaSartore/lazygit.nvim",
 	cmd = {
 		"LazyGit",
 		"LazyGitConfig",
