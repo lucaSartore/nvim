@@ -5,6 +5,9 @@ vim.g.lazygit_on_exit_callback = function ()
     vim.cmd(":Neotree toggle")
 end
 
+-- full screen
+vim.g.lazygit_floating_window_scaling_factor = 1
+
 return {
 	"kdheepak/lazygit.nvim",
 	cmd = {
