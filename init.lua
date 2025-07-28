@@ -4,6 +4,7 @@
 -- open folder / open recent folder
 -- disable and enable global spelling
 -- thmx
+-- JSON SYNTAX HIGHLIGHTER
 ------------------ ToDo: Low priority ---------------------
 -- lazy git command "e" to edit file not working
 -- neo tree jump to folder/file that start with letter
