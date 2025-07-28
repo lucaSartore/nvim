@@ -61,7 +61,10 @@ return {
 
             if enabled_languages.is_language_enabled("csharp") then
 				table.insert(ensure_installed, "omnisharp")
+            end
 
+            if enabled_languages.is_language_enabled("yml") then
+				table.insert(ensure_installed, "yaml-language-server")
             end
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

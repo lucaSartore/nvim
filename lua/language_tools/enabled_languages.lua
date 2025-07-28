@@ -13,7 +13,8 @@ function M.get_all_languages()
         "javascript", -- (or typescript/typescriptreact ecc)
         "go",
         "haskell",
-        "csharp"
+        "csharp",
+        "yml"
     }
 
     return languages
