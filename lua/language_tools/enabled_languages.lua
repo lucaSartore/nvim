@@ -12,7 +12,7 @@ function M.get_all_languages()
         "python",
         "javascript", -- (or typescript/typescriptreact ecc)
         "go",
-        "haskell",
+        -- "haskell", -- I am not using haskell as of recently, and is a bit of a pain to set up, so is disabled
         "csharp",
         "yml"
     }
