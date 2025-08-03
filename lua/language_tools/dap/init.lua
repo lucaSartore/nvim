@@ -28,9 +28,9 @@ function M.setup()
         require("language_tools.dap.javascript").setup()
     end
 
-    if enabled_languages.is_language_enabled("haskell") then
-        require("language_tools.dap.haskell").setup()
-    end
+    -- if enabled_languages.is_language_enabled("haskell") then
+    --     require("language_tools.dap.haskell").setup()
+    -- end
 
     -- Load launch.json configurations if available
     M.setup_launch_json()

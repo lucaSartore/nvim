@@ -53,11 +53,11 @@ return {
 				table.insert(ensure_installed, "go-debug-adapter")
 			end
 
-			if enabled_languages.is_language_enabled("haskell") then
-				table.insert(ensure_installed, "hls")
-				table.insert(ensure_installed, "ormolu") -- Haskell formatter
-				table.insert(ensure_installed, "haskell-debug-adapter")
-			end
+			-- if enabled_languages.is_language_enabled("haskell") then
+			-- 	table.insert(ensure_installed, "hls")
+			-- 	table.insert(ensure_installed, "ormolu") -- Haskell formatter
+			-- 	table.insert(ensure_installed, "haskell-debug-adapter")
+			-- end
 
             if enabled_languages.is_language_enabled("csharp") then
 				table.insert(ensure_installed, "omnisharp")

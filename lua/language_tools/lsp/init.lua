@@ -46,9 +46,9 @@ function M.setup()
         require("language_tools.lsp.gopls").setup(M.capabilities)
     end
 
-    if enabled_languages.is_language_enabled("haskell") then
-        require("language_tools.lsp.hls").setup(M.capabilities)
-    end
+    -- if enabled_languages.is_language_enabled("haskell") then
+    --     require("language_tools.lsp.hls").setup(M.capabilities)
+    -- end
 
     if enabled_languages.is_language_enabled("csharp") then
         require("language_tools.lsp.omnisharp").setup(M.capabilities)
