@@ -13,7 +13,7 @@
 
 
 -- if you are or not on windows os
-vim.g.windows = true
+vim.g.windows = vim.fn.has("Win32") == 1
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
