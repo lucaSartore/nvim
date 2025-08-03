@@ -131,8 +131,10 @@ local powershell_options = {
   shellquote = "",
   shellxquote = "",
 }
-for option, value in pairs(powershell_options) do
-  vim.opt[option] = value
+if vim.fn.has("Win32") == 1 then
+    for option, value in pairs(powershell_options) do
+      vim.opt[option] = value
+    end
 end
 vim.cmd('set shellcmdflag="-c"')
 

@@ -7,7 +7,16 @@ return {
 		"williamboman/mason.nvim",
 		"theHamsta/nvim-dap-virtual-text",
 		"stevearc/overseer.nvim", -- make launch.json's PreLaunchTask work
-		{ "Joakker/lua-json5", run = "./install.sh" }, -- to make json comment work. some times install.sh dose not work and need to be manually run
+		{
+            -- to make json comment work. some times install.sh dose not work and need to be manually run
+            "Joakker/lua-json5",
+
+            build = function ()
+                local base_path = vim.fn.stdpath("data") .. "/lazy/lua-json5"
+                local cmd = base_path .. "/install." .. (vim.fn.has("win32") == 1 and "ps1" or "sh")
+                vim.system({cmd}, {cwd=base_path})
+            end,
+        },
 		"leoluz/nvim-dap-go",
         "lucaSartore/nvim-dap-python",
 		{

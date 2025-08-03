@@ -169,18 +169,14 @@ local function cargo_inspector(config)
 
   return final_config
 end
-
+-- :lua print(require("mason-registry").get_package("codelldb").get_install_path)
 function M.setup()
-    local mason_registry = require("mason-registry")
-    local codelldb = mason_registry.get_package("codelldb")
-    local extension_path = codelldb:get_install_path() .. "/extension/"
-    local codelldb_path = extension_path .. "adapter/codelldb"
-
+    
     dap.adapters.lldb = {
         type = "server",
         port = "${port}",
         executable = {
-            command = codelldb_path,
+            command = "codelldb",
             args = { "--port", "${port}" },
         },
         enrich_config = function(config, on_config)
