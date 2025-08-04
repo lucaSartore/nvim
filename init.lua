@@ -11,7 +11,6 @@
 -------------- cool ideas --------------------
 -- eye tracker
 
-
 -- if you are or not on windows os
 vim.g.windows = vim.fn.has("Win32") == 1
 
@@ -41,10 +40,9 @@ vim.api.nvim_set_keymap("t", "<esc>", "", {
 	noremap = true,
 	silent = true,
 	callback = function()
-
-        -- if i am inside lazy git i don't want to remap the key
+		-- if i am inside lazy git i don't want to remap the key
 		local buffer_name = vim.api.nvim_buf_get_name(0)
-		if string.find(buffer_name, 'lazygit') then
+		if string.find(buffer_name, "lazygit") then
 			local key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
 			vim.api.nvim_feedkeys(key, "n", false)
 			return
@@ -63,7 +61,6 @@ vim.o.number = true
 
 -- always keep a column of space to the left for brake-points and other hinting elements
 vim.opt.signcolumn = "yes:1"
-
 
 -- to maintain the selection after indenting
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true })
@@ -107,12 +104,12 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":silent w<CR>", { noremap = true, silent 
 vim.opt.clipboard = "unnamedplus"
 
 -- Yank to 'a' register (non-temporary register)
-vim.api.nvim_set_keymap('n', '<leader>y', '"ay', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<leader>y', '"aY', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>y", '"ay', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>y", '"aY', { noremap = true, silent = true })
 
 -- Paste from 'a' register
-vim.api.nvim_set_keymap('n', '<leader>p', '"ap', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<leader>p', '"ap', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>p", '"ap', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>p", '"ap', { noremap = true, silent = true })
 
 -- left and right wrapping
 vim.opt.whichwrap = "b,s,h,l"
@@ -124,18 +121,18 @@ vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
 -- Some of the options are required to make powershell work with toggleterm/lazygit
 -- credit: https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#using-toggleterm-with-powershell
 local powershell_options = {
-  shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
-  shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-  shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-  shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-  shellquote = "",
-  shellxquote = "",
+	shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+	shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+	shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+	shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+	shellquote = "",
+	shellxquote = "",
 }
 if vim.fn.has("Win32") == 1 then
-    for option, value in pairs(powershell_options) do
-      vim.opt[option] = value
-    end
+	for option, value in pairs(powershell_options) do
+		vim.opt[option] = value
+	end
 end
-vim.cmd('set shellcmdflag="-c"')
+-- vim.cmd('set shellcmdflag="-c"')
 
 require("config.lazy")
