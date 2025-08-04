@@ -67,6 +67,11 @@ return {
 				table.insert(ensure_installed, "yaml-language-server")
             end
 
+            if enabled_languages.is_language_enabled("nix") then
+				table.insert(ensure_installed, "nil")
+				table.insert(ensure_installed, "nixfmt")
+            end
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		end,
 	},
