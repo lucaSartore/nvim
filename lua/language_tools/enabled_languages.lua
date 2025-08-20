@@ -14,7 +14,8 @@ function M.get_all_languages()
         "go",
         -- "haskell", -- I am not using haskell as of recently, and is a bit of a pain to set up, so is disabled
         "csharp",
-        "yml"
+        "yml",
+        "nix"
     }
 
     return languages

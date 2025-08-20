@@ -41,8 +41,14 @@ function M.setup()
         filetypes.rust = require("language_tools.formatter.rust").config
     end
 
+    if enabled_languages.is_language_enabled("nix") then
+        filetypes.nix = require("language_tools.formatter.nix").config
+    end
+
+
     require("formatter").setup({
-        logging = false,
+        logging = true,
+        log_level = vim.log.levels.WARN,
         filetype = filetypes,
     })
 end
