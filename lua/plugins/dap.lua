@@ -18,7 +18,7 @@ return {
             end,
         },
 		"leoluz/nvim-dap-go",
-        "lucaSartore/nvim-dap-python",
+        "mfussenegger/nvim-dap-python",
 		{
 			"microsoft/vscode-js-debug",
 			build = (function()
