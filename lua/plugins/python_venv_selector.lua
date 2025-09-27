@@ -31,7 +31,6 @@ return {
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
   },
   lazy = false,
-  branch = "regexp", -- reminder: the plugin has being rewritten entirely, and is in the new branch
 
   opts = {
         search = search
