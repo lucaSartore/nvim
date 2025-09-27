@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").gopls.setup({
+    vim.lsp.config("gopls",{
         capabilities = capabilities,
         settings = {
             gopls = {
@@ -15,6 +15,7 @@ function M.setup(capabilities)
             },
         },
     })
+    vim.lsp.enable("gopls")
 end
 
 return M

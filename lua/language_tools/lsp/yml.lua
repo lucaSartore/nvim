@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require('lspconfig').yamlls.setup {
+    vim.lsp.config("yamlls",{
       settings = {
         yaml = {
           schemas = {
@@ -11,7 +11,8 @@ function M.setup(capabilities)
           },
         },
       }
-    }
+    })
+    vim.lsp.enable("yamlls")
 end
 
 return M

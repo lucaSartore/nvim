@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").hls.setup({
+    vim.lsp.config("hls",{
         capabilities = capabilities,
         settings = {
             haskell = {
@@ -12,6 +12,7 @@ function M.setup(capabilities)
             }
         }
     })
+    vim.lsp.enable("hls")
 end
 
 return M

@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").pyright.setup({
+    vim.lsp.config("pyright",{
         capabilities = capabilities,
         settings = {
             python = {
@@ -13,6 +13,7 @@ function M.setup(capabilities)
             },
         },
     })
+    vim.lsp.enable("pyright")
 end
 
 return M

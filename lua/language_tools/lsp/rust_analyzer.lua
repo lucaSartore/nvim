@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").rust_analyzer.setup({
+    vim.lsp.config("rust_analyzer",{
         capabilities = capabilities,
         settings = {
             ['rust-analyzer'] = {
@@ -16,6 +16,7 @@ function M.setup(capabilities)
             }
         }
     })
+    vim.lsp.enable("rust_analyzer")
 end
 
 return M

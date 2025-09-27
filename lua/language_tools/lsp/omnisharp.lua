@@ -3,11 +3,10 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").omnisharp.setup({
+    vim.lsp.config("omnisharp",{
         capabilities = capabilities,
-        cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-        root_dir = require("lspconfig").util.root_pattern("*.csproj", "*.sln"),
     })
+    vim.lsp.enable("omnisharp")
 end
 
 return M

@@ -3,7 +3,7 @@ local M = {}
 
 ---@param capabilities table LSP capabilities
 function M.setup(capabilities)
-    require("lspconfig").ts_ls.setup({
+    vim.lsp.config("ts_ls",{
         capabilities = capabilities,
         settings = {
             typescript = {
@@ -30,6 +30,7 @@ function M.setup(capabilities)
             },
         },
     })
+    vim.lsp.enable("ts_ls")
 end
 
 return M

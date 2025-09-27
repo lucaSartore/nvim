@@ -59,7 +59,7 @@ return {
 			-- 	table.insert(ensure_installed, "haskell-debug-adapter")
 			-- end
 
-            if enabled_languages.is_language_enabled("csharp") then
+            if enabled_languages.is_language_enabled("csharp") and vim.fn.has("Win32") == 1 then
 				table.insert(ensure_installed, "omnisharp")
             end
 
