@@ -135,4 +135,9 @@ if vim.fn.has("Win32") == 1 then
 end
 -- vim.cmd('set shellcmdflag="-c"')
 
+
+if vim.env.NVIM_ENABLE_OSC52 ~= nil then
+    vim.g.clipboard = 'osc52'
+end
+
 require("config.lazy")
