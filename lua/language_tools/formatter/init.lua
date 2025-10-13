@@ -45,6 +45,11 @@ function M.setup()
         filetypes.nix = require("language_tools.formatter.nix").config
     end
 
+    if enabled_languages.is_language_enabled("csharp") then
+        vim.print("csharp_fmt")
+        filetypes.csharp = require("language_tools.formatter.csharp").config
+    end
+
 
     require("formatter").setup({
         logging = true,
