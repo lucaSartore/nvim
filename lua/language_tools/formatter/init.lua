@@ -46,8 +46,7 @@ function M.setup()
     end
 
     if enabled_languages.is_language_enabled("csharp") then
-        vim.print("csharp_fmt")
-        filetypes.csharp = require("language_tools.formatter.csharp").config
+        filetypes.cs = require("language_tools.formatter.csharp").config
     end
 
 

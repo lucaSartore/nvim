@@ -1,13 +1,10 @@
 -- CSharp formatter configuration
 local M = {}
 
-M.config = { 
+M.config = {
     function()
         return {
-            exe = "csharpier",
-            args = {
-                "format"
-            },
+            exe = "dotnet-csharpier",
             stdin = true,
         }
     end
