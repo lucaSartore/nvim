@@ -21,4 +21,3 @@
     - fulscreen from F11 to ctrl + F11
     - copy from ctrl + c to ctrl + shift + c
     - paste from ctrl + v to ctrl + shift + v
-
