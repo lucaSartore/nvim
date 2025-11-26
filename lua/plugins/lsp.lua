@@ -72,6 +72,10 @@ return {
 				table.insert(ensure_installed, "nixfmt")
             end
 
+            if enabled_languages.is_language_enabled("cpp") and vim.fn.has("Win32") == 1 then
+				table.insert(ensure_installed, "clangd")
+            end
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		end,
 	},

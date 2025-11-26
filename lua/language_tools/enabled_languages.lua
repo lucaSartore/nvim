@@ -15,7 +15,8 @@ function M.get_all_languages()
         -- "haskell", -- I am not using haskell as of recently, and is a bit of a pain to set up, so is disabled
         "csharp",
         "yml",
-        "nix"
+        "nix",
+        "cpp",
     }
 
     return languages

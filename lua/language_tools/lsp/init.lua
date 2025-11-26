@@ -62,6 +62,9 @@ function M.setup()
         require("language_tools.lsp.nix").setup(M.capabilities)
     end
 
+    if enabled_languages.is_language_enabled("cpp") then
+        require("language_tools.lsp.cpp").setup(M.capabilities)
+    end
 
     -- Set up LSP keybindings and highlighting
     M.setup_lsp_keymaps()
