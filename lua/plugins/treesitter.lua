@@ -15,6 +15,7 @@ return {
 		configs.setup({
 			ensure_installed = {
 				"c",
+				"cpp",
 				"lua",
 				"javascript",
 				"html",
