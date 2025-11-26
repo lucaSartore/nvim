@@ -72,8 +72,15 @@ return {
 				table.insert(ensure_installed, "nixfmt")
             end
 
-            if enabled_languages.is_language_enabled("cpp") and vim.fn.has("Win32") == 1 then
-				table.insert(ensure_installed, "clangd")
+            if enabled_languages.is_language_enabled("cpp") then
+                -- on linux this is installed with nix
+                if vim.fn.has("Win32") then
+				    table.insert(ensure_installed, "clangd")
+                end
+                -- this may be already installed by rust
+                if not enabled_languages.is_language_enabled("rust") then
+				    table.insert(ensure_installed, "codelldb")
+                end
             end
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

@@ -32,6 +32,10 @@ function M.setup()
     --     require("language_tools.dap.haskell").setup()
     -- end
 
+    if enabled_languages.is_language_enabled("cpp") then
+        require("language_tools.dap.cpp").setup()
+    end
+
     -- Load launch.json configurations if available
     M.setup_launch_json()
 end
