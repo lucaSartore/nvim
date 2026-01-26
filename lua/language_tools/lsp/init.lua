@@ -8,14 +8,14 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Function to show the full error message in a floating window
 local function show_diagnostics()
-	local opts = {
-		focusable = false,
-		close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-		border = "rounded",
-		source = "always",
-		prefix = "",
-	}
-	vim.diagnostic.open_float(nil, opts)
+    local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = "rounded",
+        source = "always",
+        prefix = "",
+    }
+    vim.diagnostic.open_float(nil, opts)
 end
 
 -- Initialize all LSP related configurations
@@ -92,11 +92,15 @@ function M.setup_lsp_keymaps()
             ------------------------------------- KEYBINDINGS --------------------------------------------------------
             map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
             map("gu", require("telescope.builtin").lsp_references, "[G]oto [U]sage")
-            map("gi", require("telescope.builtin").lsp_implementations,"[G]oto [I]mplementations")
+            map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementations")
             map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
             map("<leader>ca", ":Lspsaga code_action<CR>", "[C]ode [A]ction")
             map("<leader>pu", ":Lspsaga incoming_calls<CR>", "[P]eack [U]sage")
             map("<leader>pd", ":Lspsaga peek_definition<CR>", "[P]eack [D]efinition")
+
+
+            ------------------------------------- Commands --------------------------------------------------------
+            vim.api.nvim_create_user_command("LspFormat", function() vim.lsp.buf.format() end, {})
 
             ------------------------------- HIGHLIGHT ON HOVER
             local client = vim.lsp.get_client_by_id(event.data.client_id)
