@@ -3,14 +3,14 @@ return {
 	build = ":TSUpdate",
 	dependencies = {
         -- required to make the mini-ai around function/class/block work
-		"nvim-treesitter/nvim-treesitter-textobjects",
+        { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
         "LiadOz/nvim-dap-repl-highlights"
 	},
 	config = function()
 
         -- used to highlight the dap console
         require('nvim-dap-repl-highlights').setup()
-		local configs = require("nvim-treesitter.configs")
+		local configs = require("nvim-treesitter.config")
 
 		configs.setup({
 			ensure_installed = {
