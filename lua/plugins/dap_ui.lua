@@ -301,14 +301,11 @@ end
 
 return {
 	"rcarriga/nvim-dap-ui",
-	dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim", "mfussenegger/nvim-dap" },
+	dependencies = { "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap" },
     config = function()
 		-------------------     UI     ------------------------------
 		require("dapui").setup({
 			layouts = DapUiLayoutConfig,
-		})
-		require("neodev").setup({
-			library = { plugins = { "nvim-dap-ui" }, types = true },
 		})
 
 		-- debug UI keybindings
