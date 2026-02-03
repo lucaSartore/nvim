@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+    lazy = false,
 	build = ":TSUpdate",
 	dependencies = {
         -- required to make the mini-ai around function/class/block work
@@ -11,26 +12,33 @@ return {
         -- used to highlight the dap console
         require('nvim-dap-repl-highlights').setup()
 		local configs = require("nvim-treesitter.config")
+        require'nvim-treesitter'.setup {
 
-		configs.setup({
-			ensure_installed = {
-				"c",
-				"cpp",
-				"lua",
-				"javascript",
-				"html",
-				"python",
-				"rust",
-				"go",
-				"markdown",
-				"markdown_inline",
-                "dap_repl",
-                "haskell",
-                "c_sharp"
-			},
-			sync_install = false,
-			highlight = { enable = true },
-			indent = { enable = true },
-		})
+          install_dir = vim.fn.stdpath('data') .. '/site'
+        }
+
+        local languages = {
+            "c",
+            "cpp",
+            "lua",
+            "javascript",
+            "html",
+            "python",
+            "rust",
+            "go",
+            "markdown",
+            "markdown_inline",
+            "dap_repl",
+            "haskell",
+            "c_sharp"
+        }
+
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = languages,
+          callback = function() vim.treesitter.start() end,
+        })
+
+        require'nvim-treesitter'.install(languages)
 	end,
 }
