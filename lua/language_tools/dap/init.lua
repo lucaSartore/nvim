@@ -36,8 +36,6 @@ function M.setup()
         require("language_tools.dap.cpp").setup()
     end
 
-    -- Load launch.json configurations if available
-    M.setup_launch_json()
 end
 
 -- Set up DAP keybindings
@@ -78,16 +76,6 @@ function M.setup_keybindings()
     vim.api.nvim_set_keymap("n", "<F10>", "", { desc = "Debug step over", callback = dap.step_over })
     vim.api.nvim_set_keymap("n", "<F11>", "", { desc = "Debug step into", callback = dap.step_into })
     vim.api.nvim_set_keymap("n", "<F12>", "", { desc = "Debug step out", callback = dap.step_out })
-end
-
--- Set up support for launch.json configurations
-function M.setup_launch_json()
-    local vscode = require("dap.ext.vscode")
-    vscode.json_decode = require("json5").parse -- custom parser that accept comments
-
-    if vim.fn.filereadable(".vscode/launch.json") then
-        vscode.load_launchjs()
-    end
 end
 
 return M
