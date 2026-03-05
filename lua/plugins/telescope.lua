@@ -32,7 +32,18 @@ return {
 			pickers = {
 				buffers = {
 					sort_mru = true, -- Sort buffers by most recent usage
-				    path_display = { "tail" },
+				    -- path_display = { "shorten" },
+                    path_display = function(opts, path)
+                          local tail = require("telescope.utils").path_tail(path)
+                          local path_without_tail = path:sub(1, #path - #tail - 1)
+                          local parent = require("telescope.utils").path_tail(path_without_tail)
+                          
+                          if parent == "" or parent == "." then
+                            return tail
+                          end
+                          
+                          return string.format("%s/%s", parent, tail)
+                        end,
 				},
 			}
 		})
