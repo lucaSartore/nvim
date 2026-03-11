@@ -3,22 +3,16 @@ return {
 	version = "*",
 	event = "VeryLazy",
 	config = function()
-		require("nvim-surround").setup({
-            -- most features have been removed since i don't use them
-            -- and key maps some times interact poorly with each others
-			keymaps = {
-				-- insert = "<C-g>s",
-				-- insert_line = "<C-g>S",
-				normal = "ys",
-				-- normal_cur = "yss",
-				-- normal_line = "yS",
-				-- normal_cur_line = "ySS",
-				-- visual = "S",
-				-- visual_line = "gS",
-				delete = "ds",
-				change = "cs",
-				-- change_line = "cS",
-			},
-		})
+    require("nvim-surround").setup()
+        vim.g.nvim_surround_no_normal_mappings = true
+        vim.keymap.set("n", "ys", "<Plug>(nvim-surround-normal)", {
+            desc = "Add a surrounding pair around a motion (normal mode)",
+        })
+        vim.keymap.set("n", "ds", "<Plug>(nvim-surround-delete)", {
+            desc = "Delete a surrounding pair",
+        })
+        vim.keymap.set("n", "rs", "<Plug>(nvim-surround-change)", {
+            desc = "Change a surrounding pair",
+        })
 	end,
 }
