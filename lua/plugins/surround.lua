@@ -11,7 +11,7 @@ return {
         vim.keymap.set("n", "ds", "<Plug>(nvim-surround-delete)", {
             desc = "Delete a surrounding pair",
         })
-        vim.keymap.set("n", "rs", "<Plug>(nvim-surround-change)", {
+        vim.keymap.set("n", "cs", "<Plug>(nvim-surround-change)", {
             desc = "Change a surrounding pair",
         })
 	end,
