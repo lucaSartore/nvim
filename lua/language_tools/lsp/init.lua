@@ -51,7 +51,7 @@ function M.setup()
     -- end
 
     if enabled_languages.is_language_enabled("csharp") then
-        require("language_tools.lsp.omnisharp").setup(M.capabilities)
+        require("language_tools.lsp.roslyn").setup(M.capabilities)
     end
 
     if enabled_languages.is_language_enabled("yml") then
