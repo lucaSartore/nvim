@@ -24,6 +24,7 @@ function M.setup()
             program = function()
                 local cwd = vim.fn.getcwd()
                 local project_name = vim.fn.fnamemodify(cwd, ':t')
+                if last_input == "" then last_input = nil end
                 local default = last_input or cwd .. "/target/debug/" .. project_name
                 last_input = vim.fn.input("Path to executable: ", default, "file")
                 return last_input
