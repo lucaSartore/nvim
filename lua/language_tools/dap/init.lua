@@ -24,10 +24,6 @@ function M.setup()
         require("language_tools.dap.rust").setup()
     end
 
-    if enabled_languages.is_language_enabled("javascript") then
-        require("language_tools.dap.javascript").setup()
-    end
-
     -- if enabled_languages.is_language_enabled("haskell") then
     --     require("language_tools.dap.haskell").setup()
     -- end

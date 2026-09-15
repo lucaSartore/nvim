@@ -19,18 +19,6 @@ return {
         },
 		"leoluz/nvim-dap-go",
         "mfussenegger/nvim-dap-python",
-		{
-			"microsoft/vscode-js-debug",
-			build = (function()
-				if vim.g.windows then
-					return "cmd.exe /c \"npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  (if exist out rmdir /s /q out) && move dist out\""
-				else
-					return "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
-				end
-			end)(),
-			version = "1.*",
-		},
-		"mxsdev/nvim-dap-vscode-js",
 	},
 	config = function()
 		-- Setup overseer for task management
