@@ -11,9 +11,8 @@ return {
 
         -- used to highlight the dap console
         require('nvim-dap-repl-highlights').setup()
-		local configs = require("nvim-treesitter.config")
-        require'nvim-treesitter'.setup {
 
+        require'nvim-treesitter'.setup {
           install_dir = vim.fn.stdpath('data') .. '/site'
         }
 
