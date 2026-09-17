@@ -12,6 +12,11 @@ return {
 				winbar = true,
 				statusline = true,
 			},
+            window = {
+                mappings = {
+                  ["<Tab>"] = false,
+                }
+            }
 		})
 
 		vim.keymap.set("n", "<leader><Tab>", function()
