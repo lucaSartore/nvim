@@ -106,24 +106,6 @@ vim.opt.whichwrap = "b,s,h,l"
 -- backspace to delete
 vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
 
--- using powershell as default terminal
--- Some of the options are required to make powershell work with toggleterm/lazygit
--- credit: https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#using-toggleterm-with-powershell
-local powershell_options = {
-	shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-	shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-	shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-	shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-	shellquote = "",
-	shellxquote = "",
-}
-if vim.fn.has("Win32") == 1 then
-	for option, value in pairs(powershell_options) do
-		vim.opt[option] = value
-	end
-end
--- vim.cmd('set shellcmdflag="-c"')
-
 
 if vim.env.NVIM_ENABLE_OSC52 ~= nil then
     vim.g.clipboard = 'osc52'
