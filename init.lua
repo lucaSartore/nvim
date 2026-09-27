@@ -36,21 +36,10 @@ vim.api.nvim_set_keymap("v", "<C-k>", "10k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-j>", "10j", { noremap = true, silent = true })
 
 -- escape from terminal mode
-vim.api.nvim_set_keymap("t", "<esc>", "", {
+terminal_exit = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
+vim.api.nvim_set_keymap("t", "<C-space>", terminal_exit, {
 	noremap = true,
 	silent = true,
-	callback = function()
-		-- if i am inside lazy git i don't want to remap the key
-		local buffer_name = vim.api.nvim_buf_get_name(0)
-		if string.find(buffer_name, "lazygit") then
-			local key = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
-			vim.api.nvim_feedkeys(key, "n", false)
-			return
-		end
-
-		local key = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
-		vim.api.nvim_feedkeys(key, "n", false)
-	end,
 })
 
 -- window management with tap key
